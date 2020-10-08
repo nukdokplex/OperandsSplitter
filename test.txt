@@ -1,0 +1,9 @@
+Program z1;
+var a, b, s: integer;
+Begin 
+ writeln('¬ведите числа a и b ');   
+ readln(a, b);   
+ s:=a+b;  
+ writeln('—умма s=', s); 
+ readln;
+end.

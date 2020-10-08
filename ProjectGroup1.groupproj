@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{B09C2849-4C38-49C8-8F95-BFEB16CD6DC2}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="OperandsSplitter.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\ExpressionParser\ExpressionParser.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="OperandsSplitter">
+        <MSBuild Projects="OperandsSplitter.dproj"/>
+    </Target>
+    <Target Name="OperandsSplitter:Clean">
+        <MSBuild Projects="OperandsSplitter.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="OperandsSplitter:Make">
+        <MSBuild Projects="OperandsSplitter.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ExpressionParser">
+        <MSBuild Projects="..\ExpressionParser\ExpressionParser.dproj"/>
+    </Target>
+    <Target Name="ExpressionParser:Clean">
+        <MSBuild Projects="..\ExpressionParser\ExpressionParser.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ExpressionParser:Make">
+        <MSBuild Projects="..\ExpressionParser\ExpressionParser.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="OperandsSplitter;ExpressionParser"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="OperandsSplitter:Clean;ExpressionParser:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="OperandsSplitter:Make;ExpressionParser:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
